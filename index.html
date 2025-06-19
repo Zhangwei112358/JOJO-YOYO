@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>JOJO & YOYO 的猫咪相册</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #fffafc;
+      padding: 20px;
+      margin: 0;
+    }
+    h1 {
+      text-align: center;
+      color: #f78fb3;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 10px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 12px;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.02);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .like-btn {
+      color: #f78fb3;
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .comments {
+      margin-top: 10px;
+    }
+    .comments input {
+      width: 100%;
+      padding: 6px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      margin-top: 6px;
+    }
+    .comments ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 6px;
+      font-size: 14px;
+    }
+    .comments li {
+      padding: 4px 0;
+      border-bottom: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <h1>🐾 JOJO & YOYO 的猫咪相册</h1>
+  <div class="gallery">
+    <div class="card">
+      <img src="images/cat1.jpg" alt="猫咪1">
+      <div>
+        <span class="like-btn" onclick="like(this)">❤️ 点赞</span>
+        <span class="like-count">0</span>
+      </div>
+      <div class="comments">
+        <input type="text" placeholder="写评论..." onkeydown="handleComment(event, this)">
+        <ul></ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/cat2.jpg" alt="猫咪2">
+      <div>
+        <span class="like-btn" onclick="like(this)">❤️ 点赞</span>
+        <span class="like-count">0</span>
+      </div>
+      <div class="comments">
+        <input type="text" placeholder="写评论..." onkeydown="handleComment(event, this)">
+        <ul></ul>
+      </div>
+    </div>
+
+    <!-- 你可以继续复制 .card 模块来加更多猫咪图 -->
+  </div>
+
+  <script>
+    function like(btn) {
+      let countElem = btn.nextElementSibling;
+      countElem.textContent = parseInt(countElem.textContent) + 1;
+    }
+
+    function handleComment(event, input) {
+      if (event.key === 'Enter' && input.value.trim() !== '') {
+        const ul = input.nextElementSibling;
+        const li = document.createElement('li');
+        li.textContent = input.value;
+        ul.appendChild(li);
+        input.value = '';
+      }
+    }
+  </script>
+</body>
+</html>
